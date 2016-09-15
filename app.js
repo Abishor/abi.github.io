@@ -8,26 +8,31 @@ function LunchController($scope) {
 
             var foods = $scope.foodz = $scope.foodList.split(',');
             var len = 0;
-            for (var food in foods) {
-                if (food && !(0===food)) {
+            angular.forEach(foods, function(food) {
+                if (food) {
                     if (food.trim().length > 0) {
                         len++;
                     }
                 }
-            }
-            if (len > 3) {
-                $scope.msgOut = "Too much!";
+            });
+            if (0 === len) {
+                $scope.textColor = 'red';
+                $scope.inputStyle = 'error';
+                $scope.msgOut = "Please enter data and not just ','s and white-spaces!";
             } else {
-                $scope.msgOut = "Enjoy!";
+                if (len > 3) {
+                    $scope.msgOut = "Too much!";
+                } else {
+                    $scope.msgOut = "Enjoy!";
+                }
             }
         } else {
             $scope.textColor = 'red';
             $scope.inputStyle = 'error';
-            $scope.msgOut = "Please enter data first";
+            $scope.msgOut = "Please enter data first!";
         }
     }
 }
-
 
 angular
     .module("LunchChecker", [])
