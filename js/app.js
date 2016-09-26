@@ -43,13 +43,10 @@
         $scope.buy = function(item) {
             var newItem = item;
 
-            $scope.alreadyBought.push(newItem);
+            ShoppingListCheckOffService.bought.push(newItem);
 
-            var index = $scope.items.indexOf(item);
-            $scope.items.splice(index, 1);
-
-            ShoppingListCheckOffService.items = $scope.items;
-            ShoppingListCheckOffService.bought = $scope.alreadyBought;
+            var index = ShoppingListCheckOffService.items.indexOf(item);
+            ShoppingListCheckOffService.items.splice(index, 1);
         }
     };
 
