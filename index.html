@@ -35,30 +35,33 @@
                 <!-- To Buy List -->
                 <div class="col-md-6" ng-controller="ToBuyShoppingController">
                     <h2>To Buy:</h2>
-                    <div ng-repeat="item in items">
-                        Buy
-                        {{item.quantity}}
-                        {{item.name}}
-                        <button class="btn btn-default" ng-click="buy()">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            Bought
-                        </button>
+                    <div ng-show="items.length > 0">
+                        <div ng-repeat="item in items">
+                            Buy
+                            {{item.quantity}}
+                            {{item.name}}
+                            <button class="btn btn-default" ng-click="buy()">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                Bought
+                            </button>
+                        </div>
                     </div>
-                    <div class="emptyMessage">Everything is bought!</div>
+                    <div class="emptyMessage" ng-hide="items.length > 0">Everything is bought!</div>
                 </div>
 
                 <!-- Already Bought List -->
                 <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController">
                     <h2>Already Bought:</h2>
-                    <div>
+                    <div ng-show="alreadyBought.length > 0">
                         <div ng-repeat="purchased in alreadyBought">
-                            Bought {{purchased.quantity}} {{purchased.name}}
+                            Bought
+                            {{purchased}}
                         </div>
                     </div>
                     <!-- <ul>
                         <li>Bought 10 cookies</li>
                     </ul> -->
-                    <div class="emptyMessage" ng-if="alreadyBought.len < 1">Nothing bought yet.</div>
+                    <div class="emptyMessage" ng-hide="alreadyBought.length > 0">Nothing bought yet.</div>
                 </div>
             </div>
         </div>

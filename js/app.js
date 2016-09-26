@@ -38,9 +38,13 @@ function ToBuyShoppingController($scope, ShoppingListCheckOffService) {
     $scope.alreadyBought = ShoppingListCheckOffService.bought;
 
     $scope.buy = function(item) {
-        $scope.alreadyBought.push(item);
+        var newItem = item;
+
+        $scope.alreadyBought.push(newItem);
+
         var index = $scope.items.indexOf(item);
         $scope.items.splice(index, 1);
+
         ShoppingListCheckOffService.items = $scope.items;
         ShoppingListCheckOffService.bought = $scope.alreadyBought;
     }
